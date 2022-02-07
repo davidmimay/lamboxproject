@@ -1,0 +1,71 @@
+<div *ngIf="!stripeRole">
+  <div class="grid">
+    <mat-card *ngFor="let item of products">
+      <mat-card-header>
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <mat-card-subtitle style="white-space: pre-line">{{item.description}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src={{item.image}}>
+      <mat-card-actions>
+        <a mat-raised-button color="accent" (click)="subscribe(item.priceId)">{{ item.price }} {{item.currency | uppercase}}/{{ item.interval }}</a>
+        <mat-spinner *ngIf="isloading" color="accent" class="spinner"></mat-spinner>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+  
+<div class="width" *ngIf="stripeRole">
+  <h2>Status</h2>
+  <mat-card >
+    <mat-card-header>
+      <mat-icon mat-card-avatar>{{userId.active === true ? 'check_circle' : 'highlight_off'}}</mat-icon>
+      <mat-card-title>{{userId.name}}</mat-card-title>      
+      <mat-card-subtitle>{{userId.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <p>You are paying: {{ userId.price }} {{userId.currency | uppercase}}/{{ userId.interval }}</p>
+      <p>Giving you the role: {{stripeRole}}</p>
+ 
+      <!-- <div *ngIf="role == 'helper' else notPremium">
+        </div> -->
+
+        <ng-container *ngIf="!stripeRole || stripeRole === 'helper'">
+          <p>ROLE WORKS: {{stripeRole}}</p>
+        </ng-container>
+       <ng-template #notPremium>
+        <p>Subscribe to Premium to View the Nutriton Widget</p>
+        </ng-template>
+      
+        <!-- <mat-icon [ngStyle]="{'background-color': getRandomColor()}" mat-list-icon>account_box</mat-icon> -->
+      <p>Next payment will be on: {{userId.nextPayment | date}}</p>
+      <a mat-raised-button color="accent" (click)="accessCustomerPortal()">edit subscription</a>
+      <mat-spinner *ngIf="isloading" color="accent" class="spinner"></mat-spinner>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="width">
+  <h2>Past invoices</h2>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Invoices
+        </mat-panel-title>
+        <mat-panel-description>
+          These are your past invoices
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-list>
+        <mat-list-item *ngFor="let item of invoices">
+          <mat-icon mat-list-icon>note</mat-icon>
+          <div mat-line>{{item.number}}</div>
+          <div mat-line> {{item.created | date}} </div>
+          <a mat-raised-button href={{item.url}} target="_blank">view</a>
+        </mat-list-item>
+      </mat-list>
+      
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

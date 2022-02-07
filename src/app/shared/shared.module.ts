@@ -22,6 +22,9 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
 import { FlipCardModule } from './flip-card/flip-card.module';
 
+// material
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 // new
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -39,7 +42,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ClipboardModule } from '@angular/cdk/clipboard'
-import { NgxEditorModule } from 'ngx-editor';
+// import { NgxEditorModule } from 'ngx-editor';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
@@ -82,9 +85,10 @@ const modules = [
   MatButtonToggleModule,
   MatSlideToggleModule,
   ClipboardModule,
-  NgxEditorModule,
+  // NgxEditorModule,
   MatProgressBarModule,
-  FlipCardModule
+  FlipCardModule,
+  MatExpansionModule
 ];
 
 @NgModule({

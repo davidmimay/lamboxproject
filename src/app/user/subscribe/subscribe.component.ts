@@ -3,13 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase                              from 'firebase/app';
-import { environment } from '../../../environments/environment';
+// import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
 import {loadStripe} from '@stripe/stripe-js';
 import {filter, first, map, startWith, switchMap} from 'rxjs/operators';
 import 'firebase/functions';
 import { SubscribedService } from './../../services/subscribed.service';
-
 
 @Component({
   selector: 'app-subscribe',
@@ -18,12 +17,19 @@ import { SubscribedService } from './../../services/subscribed.service';
 })
 export class SubscribeComponent implements OnInit {
 
-  STRIPE_RESTRICTED_KEY = (environment.stripe.publicKey);
-  firebaseConfig = (environment.firebase);
-  functionLocation = (environment.location);
+  STRIPE_SUBS_PRICE;
+  STRIPE_RESTRICTED_KEY;
+  firebase;
+  functionLocation;
+  taxRates;
+  WEBAPP_URL;
+
+  // STRIPE_RESTRICTED_KEY = (environment.stripe.publicKey);
+  // firebaseConfig = (environment.firebaseConfig);
+  // functionLocation = (environment.location);
   // taxRates = (environment.stripe_tax);
-  STRIPE_SUBS_PRICE = (environment.stripe.subsPrice);
-  WEBAPP_URL = (environment.webapp_url);
+  // STRIPE_SUBS_PRICE = (environment.stripe.subsPrice);
+  // WEBAPP_URL = (environment.webapp_url);
 
   isloading: boolean // new spinner
   

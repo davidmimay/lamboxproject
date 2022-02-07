@@ -1,0 +1,5 @@
+tasks:
+  - name: STARTING 
+    before: npm install -g firebase-tool && @angular/cli
+    init: npm install
+    command: ng serve

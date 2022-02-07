@@ -15,6 +15,7 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { BioComponent } from './bio/bio.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { UpgradeComponent } from './upgrade/upgrade.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     BioComponent,
     EditProfileComponent,
     ViewProfileComponent,
+    UpgradeComponent,
   ],
   exports: [
     GoogleSigninDirective
