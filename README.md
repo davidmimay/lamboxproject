@@ -55,3 +55,8 @@ This project was made from https://fireship.io video lessons and courses. A high
 
 - [Source code](https://github.com/codediodeio/angular-firestarter)
 - [Learn more](https://firestarter.fireship.io/)
+
+## Developing
+- Subscribe to youtube to access unlisted videos. 
+[Source 1](https://github.com/googleapis/google-api-nodejs-client#oauth2-client)
+[Source 2](https://developers.google.com/youtube/v3/docs/subscriptions/list?apix_params=%7B%22part%22%3A%5B%22snippet%2CcontentDetails%22%5D%2C%22forChannelId%22%3A%22UC_x5XG1OV2P6uZZ5FSM9Ttw%22%2C%22mine%22%3Atrue%7D&apix=true)
