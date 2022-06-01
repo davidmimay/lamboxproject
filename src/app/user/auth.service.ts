@@ -107,6 +107,8 @@ export class AuthService {
   }
 
   async getCalendar(){
+    console.log('starting events')
+
     const events = await gapi.client.calendar.events.list({
       calendarId: 'primary',
       timeMin: new Date().toISOString(),
