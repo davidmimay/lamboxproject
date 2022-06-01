@@ -10,12 +10,14 @@ declare var gapi: any;
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  
   
   user$: Observable<firebase.User>; 
   calendarItems: any[];
   youtubeItems: any[];
+  // new
+  events: any;
 
 
   constructor(public afAuth: AngularFireAuth) { 
@@ -73,7 +75,10 @@ export class AuthService {
 
     const credential = auth.GoogleAuthProvider.credential(token);
     
-    await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
+    // await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
+    
+    // new
+    await this.afAuth.auth.signInWithCredential(credential);
 
 
     // Alternative approach, use the Firebase login with scopes and make RESTful API calls
@@ -101,14 +106,14 @@ export class AuthService {
     
   }
 
-  async getCalendar() {
+  async getCalendar(){
     const events = await gapi.client.calendar.events.list({
       calendarId: 'primary',
       timeMin: new Date().toISOString(),
       showDeleted: false,
       singleEvents: true,
-      maxResults: 10,
-      orderBy: 'startTime'
+      maxResults: 5,
+      orderBy: 'startTime',
     })
 
     console.log(events)
