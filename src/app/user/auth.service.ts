@@ -24,7 +24,7 @@ export class AuthService {
     this.initClient();
     this.user$ = afAuth.authState;
   }
-
+/*
   // Initialize the Google API client with desired scopes
   initClient() {
     gapi.load('client', () => {
@@ -37,15 +37,15 @@ export class AuthService {
         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
         scope: 'https://www.googleapis.com/auth/calendar'
       })
-
+      console.log('hello', gapi.client.init);
       gapi.client.load('calendar', 'v3', () => console.log('loaded calendar'));
 
     });
 
   }
-
+*/
   // INIT CLIENT YOUTUBE
-  /*
+  
   initClient() {
     gapi.load('client', () => {
       console.log('loaded client')
@@ -55,19 +55,29 @@ export class AuthService {
         apiKey: environment.firebaseConfig.apiKey,
         clientId: '920807818168-topig3d8j82hrfg47pittjlsofuqlo8b.apps.googleusercontent.com',
         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-        scrope: 'https://www.googleapis.com/auth/youtube.readonly'
+        scope: 'https://www.googleapis.com/auth/youtube.readonly'
       })
 
       gapi.client.load('youtube', 'v3', () => console.log('loaded youtube'));
 
     });
   }
+  /*
+  function authenticate() {
+    return gapi.auth2.getAuthInstance()
+        .signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
+        .then(function() { console.log("Sign-in successful"); },
+              function(err) { console.error("Error signing in", err); });
+  }
   */
 
   async login() {
 
+    // const googleAuth = gapi.auth2.getAuthInstance()
     const googleAuth = gapi.auth2.getAuthInstance()
-    const googleUser = await googleAuth.signIn();
+      //.signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
+
+    const googleUser = await googleAuth.signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"});// const googleUser = await googleAuth.signIn();
 
     const token = googleUser.getAuthResponse().id_token;
 
@@ -75,10 +85,7 @@ export class AuthService {
 
     const credential = auth.GoogleAuthProvider.credential(token);
     
-    // await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
-    
-    // new
-    await this.afAuth.auth.signInWithCredential(credential);
+    await this.afAuth.auth.signInWithCredential(credential); // await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
 
 
     // Alternative approach, use the Firebase login with scopes and make RESTful API calls
@@ -94,10 +101,12 @@ export class AuthService {
   }
 
   async getYoutuber() {
+    await gapi.client.load("youtube", "v3");
+
     const events = await gapi.client.youtube.subscriptions.list({
       part: ['snippet,contentDetails'],
-      forChannelId: 'UC_x5XG1OV2P6uZZ5FSM9Ttw',
-      mine: false, //mine: true
+      forChannelId: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', // Google Developers channel
+      mine: true
       })
 
       console.log(events)
@@ -105,24 +114,25 @@ export class AuthService {
       this.youtubeItems = events.result.items;
     
   }
-
+     
   async getCalendar(){
-    console.log('starting events')
+    await gapi.client.load("calendar", "v3");
 
     const events = await gapi.client.calendar.events.list({
       calendarId: 'primary',
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
+      //timeMin: new Date().toISOString(),
+      //showDeleted: false,
+      //singleEvents: true,
       maxResults: 5,
-      orderBy: 'startTime',
+      //orderBy: 'startTime',
     })
 
     console.log(events)
-
+    
     this.calendarItems = events.result.items;
-  
+    
   }
+  
 
   async insertEvent() {
     const insert = await gapi.client.calendar.events.insert({
