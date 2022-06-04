@@ -63,3 +63,5 @@ This project was made from https://fireship.io video lessons and courses. A high
 [Github](https://github.com/S0lr4c3733/epitech-area/blob/c11dfece3cb9128b221a73202a9066bc3e7bc9ac/api/routes/youtube/channel/channel.controller.ts)
 [Github2](https://github.com/hendryfoe/youtube-importer-exporter/blob/c44659cffd212683941a69ad97567b336dfbb544/pages/api/youtube/import-subscriptions.ts)
 [Video](https://fireship.io/lessons/google-calendar-api-with-firebase/)
+
+🟠 3D models: source[https://stackblitz.com/edit/angular-testing-model-viewer-jhwnn8]
