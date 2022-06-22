@@ -35,11 +35,14 @@
     <mat-form-field appearance="outline">
       <mat-label>shareable link</mat-label>
       <input matInput value="https://lamboxproject.web.app/{{user.uid}}">
-      <button matSuffix mat-button mat-icon-button (click)="alertCopy()" cdkCopyToClipboard="https://lamboxproject.web.app/{{user.uid}}"><mat-icon>reply</mat-icon></button>
+      <button matSuffix mat-button mat-icon-button (click)="alertCopy()" cdkCopyToClipboard="lamboxproject.web.app/{{user.uid}}"><mat-icon>copy</mat-icon></button>
     </mat-form-field>
 
-    <button mat-stroked-button (click)="afAuth.auth.signOut()">Logout</button>
-    
+    <div>
+      <button mat-stroked-button routerLink="/{{user.uid}}"><mat-icon>reply</mat-icon>View profile</button>
+      <button mat-stroked-button (click)="afAuth.auth.signOut()">Logout</button>
+    </div>    
+
     <app-edit-profile></app-edit-profile>
     <app-bio></app-bio>
     <app-subscribe></app-subscribe> 

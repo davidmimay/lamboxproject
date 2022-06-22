@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
-import '@google/model-viewer';
+// import '@google/model-viewer';
 
 @Component({
   selector: 'app-subscribe',
