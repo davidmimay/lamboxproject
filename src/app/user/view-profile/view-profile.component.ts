@@ -4,7 +4,8 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import { SeoService } from 'src/app/services/seo.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-profile',
@@ -15,7 +16,11 @@ export class ViewProfileComponent implements OnInit {
   user: any = {};
   threads: any[] = [];
 
-  constructor(public activatedRoute: ActivatedRoute, private afAuth: AngularFireAuth) {
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    private afAuth: AngularFireAuth,
+    private seo: SeoService
+  ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(id);
 
@@ -23,7 +28,12 @@ export class ViewProfileComponent implements OnInit {
     this.getUsersPosts(id);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.seo.generateTags({
+      title: 'Customer List',
+      description: 'A list with customers'
+    })
+  }
 
   getProfile(id: string) {
     // firebase.firestore().settings({
@@ -42,9 +52,19 @@ export class ViewProfileComponent implements OnInit {
         this.user.hobbies = this.user.hobbies.split(',');
         console.log(this.user);
       })
+      /*
+      .pipe(
+        tap(user => this.seo.generateTags({
+          title: user.displayName,
+          description: user.bio,
+          image: user.photoURL,
+        }))
+      )
+      */
       .catch((error) => {
         console.log(error);
       });
+     
   }
 
   getUsersPosts(id: string) {
@@ -56,7 +76,6 @@ export class ViewProfileComponent implements OnInit {
       .then((data) => {
         this.threads = data.docs;
       });
-  }
-  
+  }  
 
 }
