@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "nooglerway": {
+      "hosting": {
+        "nooglerway": [
+          "nooglerway"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nooglerway"
+  }
+}
