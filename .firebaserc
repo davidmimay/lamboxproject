@@ -1,14 +1,14 @@
 {
   "targets": {
-    "nooglerway": {
+    "lamboxproject": {
       "hosting": {
-        "nooglerway": [
-          "nooglerway"
+        "webapp": [
+          "lamboxproject"
         ]
       }
     }
   },
   "projects": {
-    "default": "nooglerway"
+    "default": "lamboxproject"
   }
 }

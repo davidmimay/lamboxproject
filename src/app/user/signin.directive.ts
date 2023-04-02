@@ -1,5 +1,5 @@
 import { Directive, HostListener, Optional } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithRedirect } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 
 @Directive({
   selector: '[appSignin]'
@@ -15,9 +15,9 @@ export class SigninDirective {
     // ℹ️ https://firebase.google.com/docs/auth/web/google-signin#web-version-9_4
     const provider = new GoogleAuthProvider()
     // Ask user for google data access
-    provider.addScope('https://www.googleapis.com/auth/youtube.readonly')
+    // provider.addScope('https://www.googleapis.com/auth/youtube.readonly')
     // provider.addScope('https://www.googleapis.com/auth/calendar');
-    return signInWithRedirect(this.auth, provider)
+    return signInWithPopup(this.auth, provider)
     // update user data
     // .then((credential) => {this.updateUserData(credential.user)})
   }
