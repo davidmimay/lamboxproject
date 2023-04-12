@@ -4,13 +4,6 @@ import { addDoc, collection, collectionData, doc, docData, getDoc, Firestore, in
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { traceUntilFirst } from '@angular/fire/performance';
 
-export type Customers = {
-  name: string,
-  upboats: number,
-  id: string,
-  hasPendingWrites: boolean,
-};
-
 @Component({
   selector: 'app-bio',
   templateUrl: './bio.component.html',

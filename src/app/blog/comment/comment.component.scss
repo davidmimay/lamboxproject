@@ -1,0 +1,10 @@
+.gradient {
+  background: linear-gradient(-90deg, #833ab4, #fd1d1d, #fcb045);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-size: 400% 400%;
+  animation: Gradient 10s ease infinite;
+  &:hover {
+    background-size: 150% 150%;
+  }
+}

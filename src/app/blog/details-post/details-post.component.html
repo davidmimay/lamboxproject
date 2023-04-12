@@ -1,0 +1,18 @@
+<mat-card *ngIf="post$ | async as post; else loading">
+  <img matPostImage class="align-center" [src]="post.imagePost" />
+  <mat-card-content>
+    <mat-card-title>{{ post.titlePost }}</mat-card-title>
+    <p>{{ post.contentPost }}</p>     
+  </mat-card-content>
+</mat-card>
+
+<ng-template #loading>
+  <mat-spinner class="spinner"></mat-spinner>
+</ng-template>
+
+<div class="padding">
+    
+  <button class="center" mat-raised-button routerLink="/"><mat-icon>keyboard_return</mat-icon></button>
+  <app-comment></app-comment>
+  
+</div>

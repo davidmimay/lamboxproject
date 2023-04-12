@@ -16,6 +16,7 @@
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
       <a mat-list-item routerLink="/blogger/feed" (click)="drawer.close()">Blogger</a>
+      <a mat-list-item routerLink="/blog" (click)="drawer.close()">Blog</a>
       <a mat-list-item routerLink="/store" (click)="drawer.close()">Store</a>
       <a mat-list-item routerLink="/youtube" (click)="drawer.close()">Youtube</a>
       <!-- <a mat-list-item href="#app-action">Join</a> -->
@@ -30,11 +31,19 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo" routerLink="/">{{app}}</span>
+
       <span class="fill-space"></span>
+
+      <span class="logo" routerLink="/">
+        <span style="font-family: 'Corben', serif">lambo</span><span style="font-family: 'Gruppo'">XPROJECT</span>
+      </span>
+
+      <span class="fill-space"></span>
+
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button routerLink="/">Home</a>
         <a mat-button routerLink="/blogger/feed">Blogger</a>
+        <a mat-button routerLink="/blog">Blog</a>
         <a mat-button routerLink="/store">Store</a>
         <a mat-button routerLink="/youtube">Youtube</a>
         <!-- <a mat-button href="#app-action">Join</a> -->

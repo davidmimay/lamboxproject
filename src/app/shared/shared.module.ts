@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Maybe unused
 /*
@@ -33,7 +34,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
 */
 
 // Components
@@ -77,9 +77,9 @@ const modules = [
   MatDialogModule,
   YouTubePlayerModule,
   MatTooltipModule,
+  MatProgressSpinnerModule,
   // Maybe unused
   /*
-  MatProgressSpinnerModule,
   MatAutocompleteModule,
   DragDropModule,
   HttpClientModule,
