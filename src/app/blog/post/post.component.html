@@ -1,36 +1,33 @@
-<!-- <div *ngIf="posts$ | async as posts; else loading">
-  <mat-card class="border" post="post" *ngFor="let post of posts" [routerLink]="['post', post.id]">
-    <h1>{{ post.titlePost }}</h1>
+<ng-container *ngIf="posts?.lenght > 0 | async as posts; else loading">
+  <mat-card class="border" *ngFor="let item of posts" [routerLink]="['post', item.id]">
+    <h1>{{ item.titlePost }}</h1>
     <mat-card-header>
-      <mat-card-title>{{ post.titlePost }}</mat-card-title>
+      <mat-card-title>{{ item.titlePost }}</mat-card-title>
       <mat-chip-listbox>
-        <mat-chip color="primary" *ngFor="let tag of post.tagsPost" [ngClass]="tag">{{ tag }}</mat-chip>
+        <mat-chip color="primary" *ngFor="let tag of item.tagsPost" [ngClass]="tag">{{ tag }}</mat-chip>
       </mat-chip-listbox>
       <mat-card-subtitle>10 minutes ago</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-      <p>{{ post.contentPost |  slice:0:100 }}...</p>    
+      <p>{{ item.contentPost |  slice:0:100 }}...</p>    
     </mat-card-content> 
 
-    <img class="filter" matPostImage [src]="post.imagePost" />
+    <img class="filter" matPostImage [src]="item.imagePost" />
       
     <mat-card-actions>
       <button mat-button><mat-icon>bookmark</mat-icon></button>
     </mat-card-actions>
-
   </mat-card>
-</div>
--->
+</ng-container>
 
 <ng-template #loading>
   <mat-spinner class="spinner"></mat-spinner>
 </ng-template>
 
-<h1>ID:</h1>
-<mat-card class="border" post="post" *ngFor="let post of posts">
-  <h1>ID: **** {{ post.titlePost }}</h1>
-  <!-- <mat-card-header>
+<!-- <mat-card class="border" *ngFor="let post of posts">
+
+  <mat-card-header>
     <mat-card-title>{{ post.titlePost }}</mat-card-title>
     <mat-chip-listbox>
       <mat-chip color="primary" *ngFor="let tag of post.tagsPost" [ngClass]="tag">{{ tag }}</mat-chip>
@@ -46,6 +43,6 @@
     
   <mat-card-actions>
     <button mat-button><mat-icon>bookmark</mat-icon></button>
-  </mat-card-actions> -->
+  </mat-card-actions>
 
-</mat-card>
+</mat-card> -->
