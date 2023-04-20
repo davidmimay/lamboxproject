@@ -7,7 +7,7 @@ import { RoleGuard } from './role.guard';
 import { PageComponent } from './page/page.component';
 
 const routes: Routes = [
-  { path: '', component: PageComponent},
+  { path: '', component: PostComponent},
   // { path: 'edit', component: TableComponent, canActivate: [RoleGuard]},
   { path: 'post/:id', pathMatch: 'full', component: DetailsPostComponent},
 ];

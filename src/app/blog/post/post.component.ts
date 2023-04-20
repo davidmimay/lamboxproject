@@ -7,11 +7,11 @@ import { Firestore, getDocs, collection } from '@angular/fire/firestore';
 
 export interface Post {
   titlePost: string;
-  // contentPost: string;
-  // imagePost?: any;
+  contentPost: string;
+  imagePost?: any;
   id?: string;
-  // tagsPost: string;
-  // fileRef?: string;
+  tagsPost: string;
+  fileRef?: string;
 }
 
 @Component({
@@ -21,8 +21,8 @@ export interface Post {
 })
 export class PostComponent implements OnInit {
 
-  // public posts$: Observable<PostI[]> | undefined;
-  // posts$!: PostI;
+  public posts$: Observable<Post[]> | undefined;
+  // posts$!: Post;
 
   // @Input() post!: PostI;
   posts: any = [];
@@ -31,58 +31,93 @@ export class PostComponent implements OnInit {
     private blogService: BlogService,
     private firestore: Firestore
   ) {
-    this.getPosts3;
+    this.getPosts();
   }
 
-  async getPosts1() {
+  // async getPosts1() {
+  //   const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
+  //   const posts: Post[] = [];
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(doc.id, " => ", doc.data());
+  //     const data = doc.data();
+  //     posts.push({
+  //       titlePost: data['titlePost'],
+  //     });
+  //   });
+  //   return posts;
+  // }
+
+  // async getPosts2() {
+  //   const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
+  //   const posts: Post[] = [];
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(doc.id, " => ", doc.data());
+  //     const data = doc.data() as Post;
+  //     const id = doc.id;
+  //     // // posts.push({
+  //     // //   titlePost: data['titlePost'],
+  //     // // });
+  //     return { id, ...data };
+  //   });
+  //   return posts;
+  // }
+
+  async getPosts() {
     const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
     const posts: Post[] = [];
     querySnapshot.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
-      const data = doc.data();
-      posts.push({
-        titlePost: data['titlePost'],
-      });
-    });
-    return posts;
-  }
+      const data: any = doc.data();
 
-  async getPosts2() {
-    const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
-    const posts: Post[] = [];
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-      const data = doc.data() as Post;
-      const id = doc.id;
-      // posts.push({
-      //   titlePost: data['titlePost'],
-      // });
-      return { id, ...data };
-    });
-    return posts;
-  }
-
-  async getPosts3() {
-    const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
-    const posts: Post[] = [];
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-      const data = doc.data() as Post;
+      // const data = doc.data() as Post;
       const id = doc.id;
       posts.push({ id, ...data });
+
+      // posts.push({
+        // id,
+        // title: data.title,
+
+        // titlePost: data['titlePost'],
+      // });
     });
-    return posts;
+    this.posts = posts;
   }
 
-  public async getAllPosts() {
-    const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-      const data = doc.data() as Post;
-      const id = doc.id;
-      return { id, ...data };
-    });
-  }
+  // WORKING
+  // async getPosts4() {
+  //   const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
+  //   const posts: Post[] = [];
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(doc.id, " => ", doc.data());
+  //     const data: any = doc.data();
+
+  //     // const data = doc.data() as Post;
+  //     const id = doc.id;
+  //     // posts.push({ id, ...data });
+
+  //     posts.push({
+  //       // id,
+  //       title: data.title,
+
+  //       // titlePost: data['titlePost'],
+  //     });
+  //   });
+  //   this.posts = posts;
+  //   //return posts;
+  // }
+
+  // public async getAllPosts() {
+  //   const querySnapshot = await getDocs(collection(this.firestore, 'posts'));
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(doc.id, " => ", doc.data());
+  //     const data = doc.data() as Post;
+  //     const id = doc.id;
+  //     return { id, ...data };
+  //   });
+  // }
+
+
+
   // async loadBooks(){
   //   const querySnapshot = await getDocs(collection(this.firestore, "books"));
   //   const books: Post[] = [];
@@ -102,5 +137,6 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     // this.blogService.getAllPosts();
     // this.posts$! = this.blogService.getAllPosts();
+    // this.getPosts3();
   }
 }

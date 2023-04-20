@@ -18,6 +18,6 @@ export class PageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.roleService.user$.subscribe(user => this.user = user);
+    // this.roleService.user$.subscribe(user => this.user = user);
   }
 }
